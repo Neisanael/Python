@@ -1,18 +1,14 @@
+name = None
+dict = {3:"Triangle", 4:"Quadrangle", 5:"Pentagon", 6:"Hexagon", 7:"Heptagon", 8:"Octagon", 9:"Nonagon", 10:"Decagon"}
+print("=====================================================================")
 sisi = int(input("masukan jumlah sisi : "))
-if sisi == 3 :
-    name = "triangle"
-if sisi == 4 :
-    name = "quadrilateral"
-if sisi == 5 :
-    name = "pentagon"
-if sisi == 6 :
-    name = "hexagon"
-if sisi == 7 :
-    name = "neptagon"
-if sisi == 8 :
-    name = "octagon"
-if sisi == 9 :
-    name = "nonagon"
-if sisi == 10 :
-    name = "decagon"
-print(name)
+
+for item in dict.keys() :
+    if sisi == item :
+        name = dict.get(item)
+
+if name is None :
+    print("No data name Found!")
+else :
+    print("The shape name is : ",name)
+print("=====================================================================")
