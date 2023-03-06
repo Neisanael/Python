@@ -1,3 +1,4 @@
+print("=====================================================================")
 sisi1 = int(input("Masukan panjang sisi 1 : "))
 sisi2 = int(input("Masukan panjang sisi 2 : "))
 sisi3 = int(input("Masukan panjang sisi 3 : "))
@@ -9,3 +10,4 @@ elif sisi1 == sisi2 != sisi3 or sisi2 == sisi3 != sisi1 or sisi3 == sisi1 != sis
 else :
     segi = "Segitiga Sembarang"
 print(segi)
+print("=====================================================================")

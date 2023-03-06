@@ -1,3 +1,4 @@
+print("=====================================================================")
 fetch_data = None
 dict = {"George Washington":1, "Thomas Jefferson":2, "Abraham Lincoln":5, "Alexander Hamilton":10, "Andrew Jackson":20, "Ulysses S. Grant":50, "Benjamin Franklin":100}
 print("{:<30} {:<30}".format('Individual', 'Amount'))
@@ -15,3 +16,4 @@ if fetch_data is None :
     print("No Data Found!")
 else : 
     print("The name of the denomination of a banknote ",fetch_data)
+print("=====================================================================")

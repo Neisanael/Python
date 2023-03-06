@@ -1,4 +1,5 @@
 import math
+print("=====================================================================")
 number = None
 dict = {"C4":261.63, "D4":293.66, "E4":329.63, "F4":349.23, "G4":392.00, "A4":440.00, "B4":493.88}
 print("{:<10} {:<}".format('Note', 'Frequency (Hz)'))
@@ -17,3 +18,4 @@ if number is None :
 else :
     result = float(number) / float(math.pow(2,(4-float(number))))
     print(result)
+print("=====================================================================")

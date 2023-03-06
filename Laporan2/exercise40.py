@@ -1,3 +1,4 @@
+print("=====================================================================")
 freq = int(input("Insert Sound Frequency : "))
 print("Deciding Which one is the sound...")
 if freq <= 130 and freq > 106 :
@@ -11,3 +12,4 @@ if freq <= 40 and freq > 0 :
 if freq <= 0 :
     decide = "what is this shit ?"
 print("The sound of ", decide)
+print("=====================================================================")
