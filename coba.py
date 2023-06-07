@@ -1,47 +1,71 @@
-class hewan :
-    def __init__(self, j, n, s):
-        self.jenisHewan = j
-        self.namaHewan = n
-        self.suaraHewan = s
-    
-    def getJenisHewan(self):
-        return self.jenisHewan
-    def setJenisHewan(self, value):
-        self.jenisHewan = value
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.is_word = False
 
-    def getNamaHewan(self):
-        return self.namaHewan
-    def setNamaHewan(self, value):
-        self.namaHewan = value
 
-    def getSuaraHewan(self):
-        return self.suaraHewan
-    def setSuaraHewan(self, value):
-        self.suaraHewan = value
+class SpellChecker:
+    def __init__(self):
+        self.root = TrieNode()
 
-    def displayOutput(self):
-        print(self.jenisHewan," && ", self.namaHewan," && ", self.suaraHewan)
+    def insert(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+        node.is_word = True
 
-listHewan = []
-while True:
-    choice = input("Masukkan Pilihan:\n[0] Keluar\n[1] Masukkan Data\n[2] Selesai Input\n")
+    def search(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                return False
+            node = node.children[char]
+        return node.is_word
 
-    if choice == "0":
-        print("Keluar")
-        break
-    elif choice == "1":
-        print("Masukkan Data")
-        namaHewan = input(str("Sebutkan nama hewan? : "))
-        jenisHewan = input(str("Jenis Hewanya apa? : "))
-        suaraHewan = input(str("Suaranya seperti apa? : "))
-        hwn = hewan(namaHewan, jenisHewan, suaraHewan)
-        listHewan.append(hwn)
+    def get_corrections(self, word, max_distance=1):
+        corrections = []
+        stack = [(self.root, "", word, max_distance)]
 
-    elif choice == "2":
-        print("Selesai Input")
-        for animal in listHewan:
-            animal.displayOutput()
-        continue
-    else:
-        print("Pilihan Tidak Valid. Silahkan Ulangi.")
+        while stack:
+            node, prefix, current_word, distance = stack.pop()
 
+            if distance < 0:
+                continue
+
+            if current_word == "":
+                if node.is_word:
+                    corrections.append(prefix)
+                continue
+
+            if current_word[0] in node.children:
+                stack.append(
+                    (node.children[current_word[0]], prefix + current_word[0], current_word[1:], distance)
+                )
+
+            if distance > 0:
+                for char, child in node.children.items():
+                    stack.append(
+                        (child, prefix + char, current_word, distance - (char != current_word[0]))
+                    )
+
+        return corrections
+
+
+# Example usage
+spellchecker = SpellChecker()
+
+# Build the dictionary
+dictionary = [
+    "apple", "banana", "orange", "peach", "grape", "kiwi", "mango", "watermelon",
+    "strawberry", "blueberry", "pineapple", "cherry", "pear", "lemon", "lime"
+]
+for word in dictionary:
+    spellchecker.insert(word)
+
+# Spell-check a word and get corrections
+input_word = "gape"
+corrections = spellchecker.get_corrections(input_word, max_distance=1)
+print("Input Word:", input_word)
+print("Corrections:", corrections)
