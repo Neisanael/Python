@@ -70,7 +70,7 @@ class App:
 
         filename = fd.askopenfilename(
             title='Open a file',
-            initialdir='C:/Users/neisanael/Documents/GitHub/Python/Project',
+            initialdir='C:/Users/neisanael/Documents/GitHub/Python/Project/s',
             filetypes=filetypes)
 
         if filename:
